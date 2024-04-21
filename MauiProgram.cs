@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ZXing.Net.Maui.Controls;
 
 namespace QRScan
 {
@@ -9,6 +10,7 @@ namespace QRScan
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseBarcodeReader()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
