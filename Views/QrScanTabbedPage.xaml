@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="QRScan.Views.QrScanTabbedPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:local="clr-namespace:QRScan.Views"
+    android:TabbedPage.ToolbarPlacement="Bottom"
+    BarBackground="#368dd5"
+    BarTextColor="White"
+    SelectedTabColor="#ffcd00"
+    Shell.PresentationMode="Modal"
+    UnselectedTabColor="White">
+    <local:MainPage Title="Scan" IconImageSource="scan_icon.png" />
+    <local:MainPage Title="QR Code " IconImageSource="create_icon.png" />
+    <local:MainPage Title="History" IconImageSource="history_icon.png" />
+    <local:MainPage Title="Settings" IconImageSource="setting_icon.png" />
+</TabbedPage>
