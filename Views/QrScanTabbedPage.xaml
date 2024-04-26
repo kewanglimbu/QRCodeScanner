@@ -7,7 +7,6 @@
     xmlns:local="clr-namespace:QRScan.Views"
     android:TabbedPage.ToolbarPlacement="Bottom"
     BarBackground="#368dd5"
-    BarTextColor="White"
     SelectedTabColor="#ffcd00"
     Shell.PresentationMode="Modal"
     UnselectedTabColor="White">

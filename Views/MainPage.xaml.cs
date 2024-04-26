@@ -1,25 +1,40 @@
-﻿namespace QRScan.Views
+﻿using QRScan.ViewModels;
+using ZXing.Net.Maui;
+
+namespace QRScan.Views
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private bool _IsAlertDisplayed = false;
 
-        public MainPage()
+        public MainPage( )
         {
             InitializeComponent();
+            BindingContext = new MainViewModel();
+
+            cameraBarcodeReaderView.Options = new BarcodeReaderOptions
+            {
+                Formats = BarcodeFormats.All,
+                AutoRotate = true,
+                Multiple = false
+            };
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void cameraBarcodeReaderView_BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
         {
-            count++;
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                if (_IsAlertDisplayed)
+                    return;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+                _IsAlertDisplayed = true;
+                foreach (var barcode in e.Results)
+                {
+                    await DisplayAlert("QR or Barcode Detected", $"{barcode.Format} {barcode.Value}", "Ok");
+                }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+                _IsAlertDisplayed = false;
+            });
         }
     }
-
 }

@@ -1,4 +1,6 @@
-﻿namespace QRScan
+﻿using QRScan.Views;
+
+namespace QRScan
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new QrScanTabbedPage());
         }
     }
 }

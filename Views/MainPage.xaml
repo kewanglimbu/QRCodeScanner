@@ -2,34 +2,77 @@
 <ContentPage
     x:Class="QRScan.Views.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+    NavigationPage.HasNavigationBar="False">
     <ScrollView>
-        <VerticalStackLayout Padding="30,0" Spacing="25">
-            <Image
-                Aspect="AspectFit"
-                HeightRequest="185"
-                SemanticProperties.Description="dot net bot in a race car number eight"
-                Source="dotnet_bot.png" />
+        <AbsoluteLayout>
+
+            <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <zxing:CameraBarcodeReaderView
+                    x:Name="cameraBarcodeReaderView"
+                    Grid.Row="0"
+                    BarcodesDetected="cameraBarcodeReaderView_BarcodesDetected"
+                    CameraLocation="{Binding CameraLocation}"
+                    VerticalOptions="FillAndExpand" />
+            </Grid>
+
+            <ImageButton
+                AbsoluteLayout.LayoutBounds="0.21,0.05,30,30"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Background="Transparent"
+                HorizontalOptions="Center"
+                Source="imagescan_icon.png"
+                VerticalOptions="Center" />
 
             <Label
-                SemanticProperties.HeadingLevel="Level1"
-                Style="{StaticResource Headline}"
-                Text="Hello, World!" />
+                AbsoluteLayout.LayoutBounds="0.18,0.06,78,78"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                FontSize="13"
+                HorizontalOptions="Center"
+                Text="Scan Image"
+                TextColor="White"
+                VerticalOptions="Center" />
+
+            <ImageButton
+                AbsoluteLayout.LayoutBounds="0.5,0.05,30,30"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Background="Transparent"
+                Command="{Binding FlipCameraCommand}"
+                HorizontalOptions="Center"
+                Source="flip_icon.png"
+                VerticalOptions="Center" />
 
             <Label
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                SemanticProperties.HeadingLevel="Level2"
-                Style="{StaticResource SubHeadline}"
-                Text="Welcome to &#10;.NET Multi-platform App UI" />
+                AbsoluteLayout.LayoutBounds="0.5,0.1,30,30"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                FontSize="13"
+                HorizontalOptions="Center"
+                Text="Flip"
+                TextColor="White"
+                VerticalOptions="Center" />
 
-            <Button
-                x:Name="CounterBtn"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Text="Click me" />
-        </VerticalStackLayout>
+            <ImageButton
+                AbsoluteLayout.LayoutBounds="0.8,0.05,30,30"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                Background="Transparent"
+                HorizontalOptions="Center"
+                Source="help_icon.png"
+                VerticalOptions="Center" />
+
+            <Label
+                AbsoluteLayout.LayoutBounds="0.8,0.1,32,30"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                FontSize="13"
+                HorizontalOptions="Center"
+                Text="Help"
+                TextColor="White"
+                VerticalOptions="Center" />
+        </AbsoluteLayout>
     </ScrollView>
-
 </ContentPage>
